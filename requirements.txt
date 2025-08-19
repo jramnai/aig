@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-docx
+pymupdf
+requests
+beautifulsoup4
+pytest
+streamlit
+agno
+ollama
