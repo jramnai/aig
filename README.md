@@ -25,23 +25,30 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 3. Install Ollama & Model
+### 3. Setup `.env` file
+Copy the `.env.example` file to `.env` and update it
+```bash
+cp .env.example .env
+```
+
+### 4. Install Ollama & Pull Model
 ```bash
 curl -fsSL https://ollama.com/install.sh | sh
 ollama pull gemma3:1b
 ```
 
-### 4. Run Backend (FastAPI)
+### 5. Run Backend (FastAPI)
 ```bash
 uvicorn backend.main:app --reload
 ```
 
-### 5. Run Frontend (Streamlit)
+### 6. Run Frontend (Streamlit)
 ```bash
-streamlit run frontend/app.py
+# Run this as python module so that it can access backend module
+python -m streamlit run frontend/app.py
 ```
 
-### 6. Run Tests
+### 7. Run Tests
 ```bash
 pytest
 ```

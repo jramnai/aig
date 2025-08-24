@@ -3,6 +3,7 @@ from typing import List
 from agno.agent import Agent
 from agno.models.ollama import Ollama
 
+from backend.config import settings
 from backend.prompts import (
     EXTRACTOR_INSTRUCTIONS,
     QUESTION_INSTRUCTIONS,
@@ -11,8 +12,7 @@ from backend.prompts import (
 )
 
 
-MODEL_ID = "gemma3:1b" 
-MODEL = Ollama(id=MODEL_ID)
+MODEL = Ollama(id=settings.MODEL_ID)
 
 # Extractor Agent
 # Extract key data from JD and Resume

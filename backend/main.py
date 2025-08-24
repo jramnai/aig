@@ -6,11 +6,15 @@ from fastapi import FastAPI, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.agents import run_pipeline
+from backend.config import settings
 from backend.parsers import parse_file, parse_url
 from backend.utils import _get_file_extension
 
 
-app = FastAPI()
+app = FastAPI(
+    title = settings.PROJECT_NAME,
+    openapi_url=f"{settings.API_V1_STR}/openapi.json"
+)
 
 # Enable CORS for Streamlit frontend
 # NOTE: Change this for production usage

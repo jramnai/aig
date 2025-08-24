@@ -1,12 +1,14 @@
 import requests
 import streamlit as st
 
+from backend.config import settings
+
 
 API_URL = "http://localhost:8000/generate-questions"
 
-st.set_page_config(page_title="AIG - AI Grill", layout="wide")
+st.set_page_config(page_title=settings.PROJECT_NAME, layout="wide")
 
-st.title("AIG - AI Grill")
+st.title(settings.PROJECT_NAME)
 st.write("Upload JD and Resume to generate grilling interview questions.")
 
 jd_file = st.file_uploader("Upload Job Description", type=["pdf", "docx", "txt"])
