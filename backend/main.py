@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.agents import run_pipeline
 from backend.config import settings
+from backend.logging_config import logger
 from backend.parsers import parse_file, parse_url
 from backend.utils import _get_file_extension
 
@@ -34,6 +35,7 @@ async def generate_questions_api(
     jd_url: str | None = Form(None),
     resume_url: str | None = Form(None),
 ):
+    logger.info("Generating Questions")
     jd_text, resume_text = "", ""
 
     if jd_file:
