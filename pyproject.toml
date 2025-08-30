@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aig-ai-grill"
+version = "0.1.0"
+description = "An AI-powered preparation tool that grills you with tough, context-driven questions."
+readme = "README.md"
+requires-python = ">=3.8,<4"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Jayram Nai", email = "jramnai007@gmail.com"}
+]
+keywords = [
+    "aig",
+    "grinding",
+    "llm",
+    "agent",
+    "genai",
+    "ai",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Framework :: FastAPI",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "python-docx",
+    "pymupdf",
+    "requests",
+    "beautifulsoup4",
+    "streamlit",
+    "agno",
+    "ollama",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+test = [
+    "pytest",
+]
+
+[project.urls]
+Homepage = "https://github.com/jramnai/aig"
+Repository = "https://github.com/jramnai/aig"
+Bug Tracker = "https://github.com/jramnai/aig/issues"
