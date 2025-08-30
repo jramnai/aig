@@ -53,6 +53,9 @@ python -m streamlit run frontend/app.py
 pytest
 ```
 
+## License
+MIT
+
 ## ✨ Future Enhancements
 - Add **Export PDF** (export generated questions as PDF).
 - Add **Level of Experience** (level of experience like, junior, mid-level, senior).
