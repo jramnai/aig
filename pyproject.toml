@@ -58,4 +58,4 @@ test = [
 [project.urls]
 Homepage = "https://github.com/jramnai/aig"
 Repository = "https://github.com/jramnai/aig"
-Bug Tracker = "https://github.com/jramnai/aig/issues"
+"Bug Tracker" = "https://github.com/jramnai/aig/issues"
