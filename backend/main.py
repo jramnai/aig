@@ -2,15 +2,19 @@ import os
 import shutil
 import tempfile
 
-from fastapi import FastAPI, Form, UploadFile
+from fastapi import FastAPI, Form, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
 from backend.agents import run_pipeline
 from backend.config import settings
-from backend.logging_config import logger
+from backend.logging_config import get_access_logger, get_error_logger
 from backend.parsers import parse_file, parse_url
 from backend.utils import _get_file_extension
 
+
+error_logger = get_error_logger()
+access_logger = get_access_logger()
 
 app = FastAPI(
     title = settings.PROJECT_NAME,
@@ -35,7 +39,7 @@ async def generate_questions_api(
     jd_url: str | None = Form(None),
     resume_url: str | None = Form(None),
 ):
-    logger.info("Generating Questions")
+    access_logger.info("Generating Questions")
     jd_text, resume_text = "", ""
 
     if jd_file:
@@ -62,3 +66,15 @@ async def generate_questions_api(
 
     questions = await run_pipeline(jd_text, resume_text)
     return {"questions": questions}
+
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    access_logger.info(f"Incoming request: {request.method} {request.url}")
+    try:
+        response = await call_next(request)
+        access_logger.info(f"Completed with status code: {response.status_code}")
+        return response
+    except Exception as e:
+        error_logger.error(f"Unhandled exception: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})
